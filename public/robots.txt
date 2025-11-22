@@ -1,7 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /api/
-Disallow: /profile/edit
-Disallow: /admin/
 
-Sitemap: https://callivision.com/sitemap.xml
+Sitemap: https://callivision.vercel.app/sitemap.xml
