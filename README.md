@@ -1,73 +1,119 @@
-# Welcome to your Lovable project
+# Ranjanalipi Calligraphy Web Application
 
-## Project info
+A modern web application for Nepali calligraphy recognition and analysis, built with React, TypeScript, and Vite.
 
-**URL**: https://lovable.dev/projects/39bf071d-9b13-4d22-99f7-2b292ced887b
+## 🚀 Features
 
-## How can I edit this code?
+- **User Authentication** - Login, signup, and password recovery
+- **Calligraphy Analysis** - Upload and analyze Nepali calligraphy samples
+- **Results Dashboard** - View detailed analysis results
+- **User Profile** - Manage your account and preferences
+- **History Tracking** - Access your previous analysis results
+- **Dark/Light Theme** - Toggle between themes for comfortable viewing
+- **Responsive Design** - Works seamlessly on desktop and mobile devices
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **Framework:** React 18 with TypeScript
+- **Build Tool:** Vite 5
+- **Styling:** Tailwind CSS with shadcn/ui components
+- **Routing:** React Router v6
+- **State Management:** TanStack Query (React Query)
+- **Form Handling:** React Hook Form with Zod validation
+- **UI Components:** Radix UI primitives
+- **Theme:** next-themes for dark mode support
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/39bf071d-9b13-4d22-99f7-2b292ced887b) and start prompting.
+## 📋 Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js (v18 or higher)
+- npm or yarn
 
-**Use your preferred IDE**
+## 🔧 Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. Clone the repository:
+```bash
+git clone https://github.com/LokeshShrestha/Ranjanalipi-Calligraphy-Webapp.git
+cd Ranjanalipi-Calligraphy-Webapp/frontend
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+2. Install dependencies:
+```bash
+npm install
+```
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📜 Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run build:dev` - Build in development mode
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🌐 Deployment
 
-## What technologies are used for this project?
+This project is optimized for deployment on Vercel or Netlify:
 
-This project is built with:
+### Vercel (Recommended)
+1. Push your code to GitHub
+2. Import the project on [Vercel](https://vercel.com)
+3. Vercel will auto-detect Vite and deploy automatically
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Netlify
+1. Push your code to GitHub
+2. Import the project on [Netlify](https://netlify.com)
+3. Build command: `npm run build`
+4. Publish directory: `dist`
 
-## How can I deploy this project?
+## 📁 Project Structure
 
-Simply open [Lovable](https://lovable.dev/projects/39bf071d-9b13-4d22-99f7-2b292ced887b) and click on Share -> Publish.
+```
+frontend/
+├── src/
+│   ├── components/     # Reusable UI components
+│   │   └── ui/        # shadcn/ui components
+│   ├── hooks/         # Custom React hooks
+│   ├── lib/           # Utility functions and API
+│   ├── pages/         # Route pages/views
+│   ├── App.tsx        # Main application component
+│   └── main.tsx       # Application entry point
+├── public/            # Static assets
+└── index.html         # HTML template
+```
 
-## Can I connect a custom domain to my Lovable project?
+## 🎨 Key Components
 
-Yes, you can!
+- **Authentication Pages:** Login, Signup, Forgot Password
+- **Main Pages:** Home, Dashboard, Results, History, Profile, About
+- **Theme System:** Dark/Light mode with system preference detection
+- **UI Library:** Full suite of accessible components from shadcn/ui
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🔐 Environment Variables
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Create a `.env` file in the root directory for any environment-specific configuration:
+
+```env
+VITE_API_BASE_URL=your_api_url_here
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📝 License
+
+This project is part of an academic assignment for Computer Vision (Sem 2.5).
+
+## 👨‍💻 Author
+
+**Lokesh Shrestha**
+
+---
+
+Built with ❤️ for Nepali Calligraphy Recognition
