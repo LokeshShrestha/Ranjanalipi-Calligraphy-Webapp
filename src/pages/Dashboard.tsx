@@ -75,7 +75,7 @@ const Dashboard = () => {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
-            <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/dashboard")}>Calli Vision</h1>
+            <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/dashboard")}>CalliVision</h1>
           </div>
           
           {/* Desktop Navigation */}

@@ -7,7 +7,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <header className="border-b bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-16 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Calli Vision</h1>
+          <h1 className="text-2xl font-bold">CalliVision</h1>
           <div className="flex gap-3">
             <Link to="/login">
               <Button variant="ghost">Sign In</Button>
@@ -139,7 +139,7 @@ const Index = () => {
 
       <footer className="border-t bg-muted/30">
         <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>© 2024 Calli Vision. All rights reserved.</p>
+          <p>© 2024 CalliVision. All rights reserved.</p>
         </div>
       </footer>
     </div>

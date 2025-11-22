@@ -45,7 +45,7 @@ const About = () => {
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back
             </Button>
-            <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/dashboard")}>Calli Vision</h1>
+            <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/dashboard")}>CalliVision</h1>
           </div>
           
           {/* Desktop Navigation */}
@@ -143,7 +143,7 @@ const About = () => {
         <div className="max-w-4xl mx-auto space-y-8">
           {/* Header */}
           <div className="text-center space-y-2">
-            <h2 className="text-3xl md:text-4xl font-bold">About Calli Vision</h2>
+            <h2 className="text-3xl md:text-4xl font-bold">About CalliVision</h2>
             <p className="text-muted-foreground text-sm md:text-base">
               Preserving ancient script through modern technology
             </p>
@@ -203,7 +203,7 @@ const About = () => {
             </CardHeader>
             <CardContent className="text-sm md:text-base text-muted-foreground leading-relaxed">
               <p>
-                Calli Vision bridges the gap between traditional calligraphy and modern technology. By leveraging machine learning and computer vision, 
+                CalliVision bridges the gap between traditional calligraphy and modern technology. By leveraging machine learning and computer vision, 
                 we provide instant feedback to help learners improve their Ranjana Lipi calligraphy skills. Our goal is to make this ancient art form 
                 more accessible to aspiring calligraphers worldwide, ensuring its preservation for future generations.
               </p>

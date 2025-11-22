@@ -206,7 +206,7 @@ const Home = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <header className="border-b bg-background/80 backdrop-blur-sm relative">
         <div className="container mx-auto px-4 md:px-16 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/dashboard")}>Calli Vision</h1>
+          <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/dashboard")}>CalliVision</h1>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-4">

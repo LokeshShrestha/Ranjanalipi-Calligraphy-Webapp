@@ -21,7 +21,7 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="system" storageKey="calli-vision-theme">
+    <ThemeProvider defaultTheme="system" storageKey="callivision-theme">
       <TooltipProvider>
         <Toaster />
         <Sonner />

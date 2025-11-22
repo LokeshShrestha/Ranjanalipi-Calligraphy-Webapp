@@ -47,7 +47,7 @@ const Login = () => {
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <header className="border-b bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-16 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">Calli Vision</h1>
+          <h1 className="text-2xl font-bold">CalliVision</h1>
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <Button variant="ghost" onClick={() => navigate("/signup")}>
