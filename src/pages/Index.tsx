@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Sparkles, CheckCircle, Zap } from "lucide-react";
+import FAQ from "@/components/FAQ";
 
 const Index = () => {
   return (
@@ -24,11 +25,10 @@ const Index = () => {
           <div className="max-w-4xl mx-auto text-center space-y-8">
             <div className="space-y-4 animate-fade-in">
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                Master the Art of{" "}
-                <span className="text-primary">Calligraphy</span>
+                Master <span className="text-primary">Ranjana Lipi</span> Calligraphy
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                AI-powered calligraphy analysis and feedback to perfect your strokes
+                AI-powered feedback for Newa script practice. Get instant accuracy scores, stroke analysis, and personalized tips to perfect your Ranjana Lipi handwriting.
               </p>
             </div>
 
@@ -50,17 +50,20 @@ const Index = () => {
 
         <section className="container mx-auto px-4 py-20 border-t">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12">
-              How It Works
+            <h2 className="text-3xl font-bold text-center mb-4">
+              How CalliVision Works
             </h2>
+            <p className="text-center text-muted-foreground mb-12">
+              Three simple steps to improve your Ranjana Lipi calligraphy skills
+            </p>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="space-y-3 text-center">
                 <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <span className="text-2xl font-bold text-primary">1</span>
                 </div>
-                <h3 className="text-xl font-semibold">Upload or Capture</h3>
+                <h3 className="text-xl font-semibold">Upload Your Handwriting</h3>
                 <p className="text-muted-foreground">
-                  Drop your calligraphy image or use your camera to capture it
+                  Take a photo of your Ranjana Lipi characters or upload an existing image for analysis
                 </p>
               </div>
 
@@ -68,9 +71,9 @@ const Index = () => {
                 <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <span className="text-2xl font-bold text-primary">2</span>
                 </div>
-                <h3 className="text-xl font-semibold">AI Analysis</h3>
+                <h3 className="text-xl font-semibold">AI Analysis & Scoring</h3>
                 <p className="text-muted-foreground">
-                  Get instant similarity scores compared to reference calligraphy
+                  Our AI instantly compares your writing to authentic Newa script manuscripts and provides accuracy scores
                 </p>
               </div>
 
@@ -78,9 +81,9 @@ const Index = () => {
                 <div className="mx-auto w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                   <span className="text-2xl font-bold text-primary">3</span>
                 </div>
-                <h3 className="text-xl font-semibold">Get Feedback</h3>
+                <h3 className="text-xl font-semibold">Get Detailed Feedback</h3>
                 <p className="text-muted-foreground">
-                  Receive detailed feedback on strokes, pressure, and technique
+                  Receive stroke-by-stroke analysis, visual overlays, and personalized improvement recommendations
                 </p>
               </div>
             </div>
@@ -89,32 +92,37 @@ const Index = () => {
 
         <section className="container mx-auto px-4 py-20 border-t">
           <div className="max-w-3xl mx-auto space-y-8">
-            <h2 className="text-3xl font-bold text-center">Features</h2>
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-2">Features</h2>
+              <p className="text-muted-foreground">
+                Everything you need to master Ranjana Lipi calligraphy
+              </p>
+            </div>
             <div className="space-y-4">
               <div className="flex gap-3 items-start">
                 <CheckCircle className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold mb-1">Real-time Analysis</h3>
+                  <h3 className="font-semibold mb-1">Instant Accuracy Scoring</h3>
                   <p className="text-muted-foreground">
-                    Instant similarity scoring and overlay comparison
+                    Get real-time accuracy scores comparing your handwriting to authentic Ranjana Lipi references
                   </p>
                 </div>
               </div>
               <div className="flex gap-3 items-start">
                 <Zap className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold mb-1">AI-Powered Feedback</h3>
+                  <h3 className="font-semibold mb-1">Stroke Quality Analysis</h3>
                   <p className="text-muted-foreground">
-                    Detailed insights on stroke quality, pressure, and technique
+                    AI-powered feedback on stroke order, pressure, proportions, and traditional Newa script aesthetics
                   </p>
                 </div>
               </div>
               <div className="flex gap-3 items-start">
                 <Sparkles className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="font-semibold mb-1">Easy to Use</h3>
+                  <h3 className="font-semibold mb-1">Visual Overlay Comparison</h3>
                   <p className="text-muted-foreground">
-                    Upload images or capture directly with your device camera
+                    See your handwriting overlaid with ideal Ranjana Lipi characters to identify areas for improvement
                   </p>
                 </div>
               </div>
@@ -124,9 +132,9 @@ const Index = () => {
 
         <section className="container mx-auto px-4 py-20 border-t">
           <div className="max-w-2xl mx-auto text-center space-y-6">
-            <h2 className="text-3xl font-bold">Ready to Improve?</h2>
+            <h2 className="text-3xl font-bold">Ready to Master Ranjana Lipi?</h2>
             <p className="text-xl text-muted-foreground">
-              Start analyzing your calligraphy today
+              Start practicing Newa script today with AI-powered feedback
             </p>
             <Link to="/signup">
               <Button size="lg">
@@ -135,6 +143,8 @@ const Index = () => {
             </Link>
           </div>
         </section>
+
+        <FAQ />
       </main>
 
       <footer className="border-t bg-muted/30">
