@@ -9,7 +9,10 @@ const Index = () => {
       <header className="border-b bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-16 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold">CalliVision</h1>
-          <div className="flex gap-3">
+          <div className="flex items-center gap-3">
+            <Link to="/about">
+              <Button variant="ghost">About</Button>
+            </Link>
             <Link to="/login">
               <Button variant="ghost">Sign In</Button>
             </Link>
