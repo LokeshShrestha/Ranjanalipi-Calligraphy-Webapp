@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Sparkles, History as HistoryIcon, LogOut, User, Menu, X, BarChart3, Home as HomeIcon } from "lucide-react";
+import { ArrowLeft, Sparkles, History as HistoryIcon, LogOut, User, Menu, X, BarChart3, Home as HomeIcon, Loader2 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
 import { Label } from "@/components/ui/label";
@@ -12,7 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { clearAuthTokens, getUsername, isAuthenticated } from "@/lib/api";
+import { clearAuthTokens, getUsername, isAuthenticated, feedbackApi } from "@/lib/api";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useToast } from "@/hooks/use-toast";
 
@@ -22,6 +22,8 @@ const Results = () => {
   const { toast } = useToast();
   const username = getUsername();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [loadingFeedback, setLoadingFeedback] = useState(false);
   
   const userImage = location.state?.userImage || "/placeholder.svg";
   const similarityData = location.state?.similarityData;
@@ -36,6 +38,46 @@ const Results = () => {
       navigate("/login");
     }
   }, [navigate, toast]);
+
+  // Fetch feedback after similarity data is loaded
+  useEffect(() => {
+    const fetchFeedback = async () => {
+      if (similarityData && !feedback && !loadingFeedback) {
+        setLoadingFeedback(true);
+        try {
+          const feedbackResponse = await feedbackApi.getAIFeedback({
+            user_image: similarityData.user_image,
+            reference_image: similarityData.reference_image,
+            blended_overlay: similarityData.blended_overlay,
+            target_class: similarityData.compared_with_class,
+            similarity_score: similarityData.similarity_score,
+            distance: similarityData.distance,
+            is_same_character: similarityData.is_same_character,
+          });
+
+          if (feedbackResponse.success) {
+            setFeedback(feedbackResponse.feedback);
+          } else {
+            toast({
+              title: "Feedback Error",
+              description: feedbackResponse.error || "Failed to generate feedback",
+              variant: "destructive",
+            });
+          }
+        } catch (error: any) {
+          toast({
+            title: "Feedback Error",
+            description: error.message || "Failed to generate feedback",
+            variant: "destructive",
+          });
+        } finally {
+          setLoadingFeedback(false);
+        }
+      }
+    };
+
+    fetchFeedback();
+  }, [similarityData, feedback, loadingFeedback, toast]);
 
   const handleLogout = () => {
     clearAuthTokens();
@@ -221,14 +263,26 @@ const Results = () => {
                     </div>
                   </div>
 
-                  {similarityData.feedback && (
+                  {loadingFeedback && (
+                    <Card className="p-6 bg-primary/5">
+                      <h4 className="font-semibold mb-3 flex items-center gap-2">
+                        <Loader2 className="h-5 w-5 text-primary animate-spin" />
+                        Generating AI Feedback...
+                      </h4>
+                      <p className="text-muted-foreground text-sm">
+                        Please wait while we analyze your calligraphy and generate personalized feedback.
+                      </p>
+                    </Card>
+                  )}
+
+                  {feedback && !loadingFeedback && (
                     <Card className="p-6 bg-primary/5">
                       <h4 className="font-semibold mb-3 flex items-center gap-2">
                         <Sparkles className="h-5 w-5 text-primary" />
                         AI Feedback
                       </h4>
                       <div className="text-muted-foreground leading-relaxed whitespace-pre-line">
-                        {similarityData.feedback}
+                        {feedback}
                       </div>
                     </Card>
                   )}

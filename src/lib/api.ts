@@ -54,7 +54,8 @@ export const isAuthenticated = (): boolean => {
  */
 async function apiRequest(
   endpoint: string,
-  options: RequestInit = {}
+  options: RequestInit = {},
+  skipAuthRedirect: boolean = false
 ): Promise<Response> {
   const token = getAuthToken();
   const headers: HeadersInit = {
@@ -76,8 +77,8 @@ async function apiRequest(
     headers,
   });
 
-  // Handle 401 Unauthorized - token expired
-  if (response.status === 401) {
+  // Handle 401 Unauthorized - token expired (but skip for login/signup endpoints)
+  if (response.status === 401 && !skipAuthRedirect) {
     clearAuthTokens();
     window.location.href = '/login';
     throw new Error('Authentication failed. Please login again.');
@@ -111,7 +112,7 @@ export const authApi = {
     const response = await apiRequest('/signup/', {
       method: 'POST',
       body: JSON.stringify(data),
-    });
+    }, true); // Skip auto-redirect for signup
     return response.json();
   },
 
@@ -119,7 +120,7 @@ export const authApi = {
     const response = await apiRequest('/signin/', {
       method: 'POST',
       body: JSON.stringify(data),
-    });
+    }, true); // Skip auto-redirect for signin
     
     if (!response.ok) {
       const error = await response.json();
@@ -333,10 +334,26 @@ export interface FeedbackResponse {
   error?: string;
 }
 
+export interface FeedbackRequest {
+  user_image: string; // base64
+  reference_image: string; // base64
+  blended_overlay: string; // base64
+  target_class: number;
+  similarity_score: number;
+  distance: number;
+  is_same_character: boolean;
+}
+
 export const feedbackApi = {
-  getAIFeedback: async (blendedImageFile: File): Promise<FeedbackResponse> => {
+  getAIFeedback: async (feedbackData: FeedbackRequest): Promise<FeedbackResponse> => {
     const formData = new FormData();
-    formData.append('image', blendedImageFile);
+    formData.append('user_image', feedbackData.user_image);
+    formData.append('reference_image', feedbackData.reference_image);
+    formData.append('blended_overlay', feedbackData.blended_overlay);
+    formData.append('target_class', feedbackData.target_class.toString());
+    formData.append('similarity_score', feedbackData.similarity_score.toString());
+    formData.append('distance', feedbackData.distance.toString());
+    formData.append('is_same_character', feedbackData.is_same_character.toString());
 
     const response = await apiRequest('/feedback/', {
       method: 'POST',
