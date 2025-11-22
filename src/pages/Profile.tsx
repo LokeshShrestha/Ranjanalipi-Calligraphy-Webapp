@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { ArrowLeft, Edit, History as HistoryIcon, User, LogOut, Menu, X, BarChart3, Home as HomeIcon, BookOpen } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUsername, clearAuthTokens } from "@/lib/api";
+import { getUsername, clearAuthTokens, isAuthenticated } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
@@ -21,6 +21,17 @@ const Profile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const username = getUsername() || "User";
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to view your profile",
+        variant: "destructive",
+      });
+      navigate("/login");
+    }
+  }, [navigate, toast]);
 
   const handleLogout = () => {
     clearAuthTokens();

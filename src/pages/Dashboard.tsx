@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, History as HistoryIcon, User, LogOut, Menu, X, TrendingUp, Target, Award, BarChart3, Upload, Home as HomeIcon, BookOpen } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { getUsername, clearAuthTokens, userApi, type UserStatistics } from "@/lib/api";
+import { getUsername, clearAuthTokens, userApi, type UserStatistics, isAuthenticated } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
@@ -24,8 +24,17 @@ const Dashboard = () => {
   const username = getUsername() || "User";
 
   useEffect(() => {
+    if (!isAuthenticated()) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to access your dashboard",
+        variant: "destructive",
+      });
+      navigate("/login");
+      return;
+    }
     fetchStatistics();
-  }, []);
+  }, [navigate, toast]);
 
   const fetchStatistics = async () => {
     try {

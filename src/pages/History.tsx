@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Info, History as HistoryIcon, User, LogOut, Menu, X, Trash2, BarChart3, Home as HomeIcon, BookOpen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { historyApi, clearAuthTokens, getUsername, type SimilarityHistory } from "@/lib/api";
+import { historyApi, clearAuthTokens, getUsername, type SimilarityHistory, isAuthenticated } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import {
   DropdownMenu,
@@ -23,8 +23,17 @@ const History = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    if (!isAuthenticated()) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to view your history",
+        variant: "destructive",
+      });
+      navigate("/login");
+      return;
+    }
     fetchHistory();
-  }, []);
+  }, [navigate, toast]);
 
   const fetchHistory = async () => {
     try {

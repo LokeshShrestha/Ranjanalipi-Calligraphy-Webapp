@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
-import { authApi, getUsername } from "@/lib/api";
+import { authApi, getUsername, isAuthenticated } from "@/lib/api";
 
 const ProfileEdit = () => {
   const navigate = useNavigate();
@@ -19,6 +19,17 @@ const ProfileEdit = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isUpdatingUsername, setIsUpdatingUsername] = useState(false);
   const [isChangingPassword, setIsChangingPassword] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to edit your profile",
+        variant: "destructive",
+      });
+      navigate("/login");
+    }
+  }, [navigate, toast]);
 
   const handleChangeUsername = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Upload, Camera, LogOut, User, History as HistoryIcon, Menu, X, BarChart3, Home as HomeIcon, Info, BookOpen } from "lucide-react";
@@ -11,7 +11,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { predictionApi, similarityApi, clearAuthTokens, getUsername } from "@/lib/api";
+import { predictionApi, similarityApi, clearAuthTokens, getUsername, isAuthenticated } from "@/lib/api";
 import { ThemeToggle } from "@/components/theme-toggle";
 import ReferenceGuide from "@/reference_ranjana_guide.png";
 
@@ -27,6 +27,17 @@ const Home = () => {
   const { toast } = useToast();
   const username = getUsername();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to access this page",
+        variant: "destructive",
+      });
+      navigate("/login");
+    }
+  }, [navigate, toast]);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();

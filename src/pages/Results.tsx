@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Sparkles, History as HistoryIcon, LogOut, User, Menu, X, BarChart3, Home as HomeIcon } from "lucide-react";
@@ -12,17 +12,30 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { clearAuthTokens, getUsername } from "@/lib/api";
+import { clearAuthTokens, getUsername, isAuthenticated } from "@/lib/api";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useToast } from "@/hooks/use-toast";
 
 const Results = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { toast } = useToast();
   const username = getUsername();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const userImage = location.state?.userImage || "/placeholder.svg";
   const similarityData = location.state?.similarityData;
+
+  useEffect(() => {
+    if (!isAuthenticated()) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to view results",
+        variant: "destructive",
+      });
+      navigate("/login");
+    }
+  }, [navigate, toast]);
 
   const handleLogout = () => {
     clearAuthTokens();
