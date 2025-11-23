@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { authApi, setAuthTokens, setUsername } from "@/lib/api";
@@ -67,6 +68,11 @@ const Login = () => {
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
           <CardDescription>Enter your credentials to access your account</CardDescription>
+          <Alert className="mt-4">
+            <AlertDescription className="text-sm">
+              ⏱️ First request may take up to 1 minute as the backend is hosted on a free tier.
+            </AlertDescription>
+          </Alert>
         </CardHeader>
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-4">
