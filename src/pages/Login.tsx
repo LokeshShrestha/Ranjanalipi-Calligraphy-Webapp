@@ -83,7 +83,7 @@ const Login = () => {
                 type="text"
                 placeholder="your_username"
                 value={username}
-                onChange={(e) => setUsernameInput(e.target.value)}
+                onChange={(e) => setUsernameInput(e.target.value.trim())}
                 required
                 disabled={isLoading}
               />
@@ -95,7 +95,7 @@ const Login = () => {
                 type="password"
                 placeholder="••••••••"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
                 required
                 disabled={isLoading}
               />

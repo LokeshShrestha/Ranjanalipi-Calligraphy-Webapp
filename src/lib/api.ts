@@ -55,15 +55,16 @@ export const isAuthenticated = (): boolean => {
 async function apiRequest(
   endpoint: string,
   options: RequestInit = {},
-  skipAuthRedirect: boolean = false
+  skipAuthRedirect: boolean = false,
+  skipAuthHeader: boolean = false
 ): Promise<Response> {
   const token = getAuthToken();
   const headers: HeadersInit = {
     ...options.headers,
   };
 
-  // Add auth header if token exists
-  if (token) {
+  // Add auth header if token exists and not skipping
+  if (token && !skipAuthHeader) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
@@ -112,7 +113,7 @@ export const authApi = {
     const response = await apiRequest('/signup/', {
       method: 'POST',
       body: JSON.stringify(data),
-    }, true); // Skip auto-redirect for signup
+    }, true, true); // Skip auto-redirect and auth header for signup
     return response.json();
   },
 
@@ -120,7 +121,7 @@ export const authApi = {
     const response = await apiRequest('/signin/', {
       method: 'POST',
       body: JSON.stringify(data),
-    }, true); // Skip auto-redirect for signin
+    }, true, true); // Skip auto-redirect and auth header for signin
     
     if (!response.ok) {
       const error = await response.json();
